@@ -55,7 +55,7 @@ func (d *Supervisor) NewSupervisor(ip string, pcc *params.ChainConfig, committee
 
 	d.sl = supervisor_log.NewSupervisorLog()
 
-	d.Ss = signal.NewStopSignal(5 * int(pcc.ShardNums))
+	d.Ss = signal.NewStopSignal(10 * int(pcc.ShardNums))
 
 	switch committeeMethod {
 	case "CLPA_Broker":
