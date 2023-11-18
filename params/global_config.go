@@ -11,6 +11,6 @@ var (
 	ShardNum            = 4
 	DataWrite_path      = "./result/"           // measurement data result output path
 	LogWrite_path       = "./log"               // log output path
-	SupervisorAddr      = "172.19.79.92:18800"  //supervisor ip address
+	SupervisorAddr      = "172.0.0.1:18800"     //supervisor ip address
 	FileInput           = `../txs_0.0cross.csv` //the raw BlockTransaction data path
 )
