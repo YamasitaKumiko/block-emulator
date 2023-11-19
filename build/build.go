@@ -15,6 +15,7 @@ func initConfig(nid, nnm, sid, snm uint64) *params.ChainConfig {
 			params.IPmap_nodeTable[i] = make(map[uint64]string)
 		}
 		for j := uint64(0); j < nnm; j++ {
+			//params.IPmap_nodeTable[i][j] = "127.0.0.1:" + strconv.Itoa(28800+int(i)*100+int(j))
 			params.IPmap_nodeTable[i][j] = params.IPmap_shardTable[i] + strconv.Itoa(28801+int(j))
 		}
 	}
@@ -47,7 +48,7 @@ func BuildSupervisor(nnm, snm, mod uint64) {
 	lsn := new(supervisor.Supervisor)
 	lsn.NewSupervisor(params.SupervisorAddr, initConfig(123, nnm, 123, snm), params.CommitteeMethod[mod], measureMod...)
 
-	time.Sleep(10000 * time.Millisecond)
+	time.Sleep(30000 * time.Millisecond)
 	go lsn.SupervisorTxHandling()
 	lsn.TcpListen()
 }
