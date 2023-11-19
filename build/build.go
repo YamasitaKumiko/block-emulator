@@ -20,7 +20,7 @@ func initConfig(nid, nnm, sid, snm uint64) *params.ChainConfig {
 		for j := uint64(0); j < nnm; j++ {
 			//params.IPmap_nodeTable[i][j] = "127.0.0.1:" + strconv.Itoa(28800+int(i)*100+int(j))
 			params.IPmap_nodeTable[i][j] = params.IPmap_shardTable[i] + strconv.Itoa(28801+int(j))
-			params.IPmap_ListenNodeTable[i][j] = "127.0.0.1:" + strconv.Itoa(28801+int(j))
+			params.IPmap_ListenNodeTable[i][j] = "0.0.0.0:" + strconv.Itoa(28801+int(j))
 		}
 	}
 	params.IPmap_nodeTable[params.DeciderShard] = make(map[uint64]string)

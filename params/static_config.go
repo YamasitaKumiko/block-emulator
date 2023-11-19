@@ -24,6 +24,6 @@ var (
 	CommitteeMethod       = []string{"CLPA_Broker", "CLPA", "Broker", "Relay"}
 	MeasureBrokerMod      = []string{"TPS_Broker", "TCL_Broker", "CrossTxRate_Broker", "TxNumberCount_Broker"}
 	MeasureRelayMod       = []string{"TPS_Relay", "TCL_Relay", "CrossTxRate_Relay", "TxNumberCount_Relay"}
-	IPmap_shardTable      = []string{"172.19.79.92:", "172.19.79.91:", "8.148.12.110:", "8.141.10.97:",
+	IPmap_shardTable      = []string{"172.19.79.91:", "172.19.79.92:", "8.148.12.110:", "8.141.10.97:",
 		"8.134.115.119:", "8.134.123.158:", "47.96.178.79:", "8.140.204.54:"}
 )
