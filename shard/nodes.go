@@ -7,9 +7,10 @@ import (
 )
 
 type Node struct {
-	NodeID  uint64
-	ShardID uint64
-	IPaddr  string
+	NodeID       uint64
+	ShardID      uint64
+	IPaddr       string
+	TPaddrListen string
 }
 
 func (n *Node) PrintNode() {
@@ -17,6 +18,7 @@ func (n *Node) PrintNode() {
 		n.NodeID,
 		n.ShardID,
 		n.IPaddr,
+		n.TPaddrListen,
 	}
 	fmt.Printf("%v\n", v)
 }

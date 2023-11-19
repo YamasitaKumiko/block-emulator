@@ -32,11 +32,12 @@ type PbftConsensusNode struct {
 	db       ethdb.Database    // to save the mpt
 
 	// the global config about pbft
-	pbftChainConfig *params.ChainConfig          // the chain config in this pbft
-	ip_nodeTable    map[uint64]map[uint64]string // denote the ip of the specific node
-	node_nums       uint64                       // the number of nodes in this pfbt, denoted by N
-	malicious_nums  uint64                       // f, 3f + 1 = N
-	view            uint64                       // denote the view of this pbft, the main node can be inferred from this variant
+	pbftChainConfig    *params.ChainConfig          // the chain config in this pbft
+	ip_nodeTable       map[uint64]map[uint64]string // denote the ip of the specific node
+	ip_listenNodeTable map[uint64]map[uint64]string //denote the local ip of node eg: 127.0.0.1:28800
+	node_nums          uint64                       // the number of nodes in this pfbt, denoted by N
+	malicious_nums     uint64                       // f, 3f + 1 = N
+	view               uint64                       // denote the view of this pbft, the main node can be inferred from this variant
 
 	// the control message and message checking utils in pbft
 	sequenceID        uint64                          // the message sequence id of the pbft
@@ -76,6 +77,7 @@ type PbftConsensusNode struct {
 func NewPbftNode(shardID, nodeID uint64, pcc *params.ChainConfig, messageHandleType string) *PbftConsensusNode {
 	p := new(PbftConsensusNode)
 	p.ip_nodeTable = params.IPmap_nodeTable
+	p.ip_listenNodeTable = params.IPmap_ListenNodeTable
 	p.node_nums = pcc.Nodes_perShard
 	p.ShardID = shardID
 	p.NodeID = nodeID
@@ -92,9 +94,10 @@ func NewPbftNode(shardID, nodeID uint64, pcc *params.ChainConfig, messageHandleT
 	}
 
 	p.RunningNode = &shard.Node{
-		NodeID:  nodeID,
-		ShardID: shardID,
-		IPaddr:  p.ip_nodeTable[shardID][nodeID],
+		NodeID:       nodeID,
+		ShardID:      shardID,
+		IPaddr:       p.ip_nodeTable[shardID][nodeID],
+		TPaddrListen: p.ip_listenNodeTable[shardID][nodeID],
 	}
 
 	p.stop = false
@@ -202,7 +205,7 @@ func (p *PbftConsensusNode) handleClientRequest(con net.Conn) {
 }
 
 func (p *PbftConsensusNode) TcpListen() {
-	ln, err := net.Listen("tcp", p.RunningNode.IPaddr)
+	ln, err := net.Listen("tcp", p.RunningNode.TPaddrListen)
 	p.tcpln = ln
 	if err != nil {
 		log.Panic(err)
