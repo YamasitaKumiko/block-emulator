@@ -26,7 +26,7 @@ func initConfig(nid, nnm, sid, snm uint64) *params.ChainConfig {
 	params.IPmap_nodeTable[params.DeciderShard] = make(map[uint64]string)
 	params.IPmap_nodeTable[params.DeciderShard][0] = params.SupervisorAddr
 	params.IPmap_ListenNodeTable[params.DeciderShard] = make(map[uint64]string)
-	params.IPmap_ListenNodeTable[params.DeciderShard][0] = params.SupervisorAddr
+	params.IPmap_ListenNodeTable[params.DeciderShard][0] = params.SupervisorListenAddr
 	params.NodesInShard = int(nnm)
 	params.ShardNum = int(snm)
 

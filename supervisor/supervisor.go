@@ -175,7 +175,7 @@ func (d *Supervisor) handleClientRequest(con net.Conn) {
 }
 
 func (d *Supervisor) TcpListen() {
-	ln, err := net.Listen("tcp", d.IPaddr)
+	ln, err := net.Listen("tcp", params.SupervisorListenAddr)
 	if err != nil {
 		log.Panic(err)
 	}
