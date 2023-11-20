@@ -54,7 +54,7 @@ func BuildSupervisor(nnm, snm, mod uint64) {
 	lsn := new(supervisor.Supervisor)
 	lsn.NewSupervisor(params.SupervisorAddr, initConfig(123, nnm, 123, snm), params.CommitteeMethod[mod], measureMod...)
 
-	time.Sleep(60 * time.Second)
+	time.Sleep(120 * time.Second)
 	go lsn.SupervisorTxHandling()
 	lsn.TcpListen()
 }
