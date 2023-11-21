@@ -81,7 +81,7 @@ func NewTransaction(sender, recipient string, value *big.Int, nonce uint64) *Tra
 
 	hash := sha256.Sum256(tx.Encode())
 	tx.TxHash = hash[:]
-	tx.Relayed = true
+	tx.Relayed = false
 	tx.FinalRecipient = ""
 	tx.OriginalSender = ""
 	tx.RawTxHash = nil

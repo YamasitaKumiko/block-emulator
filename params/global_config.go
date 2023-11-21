@@ -6,7 +6,7 @@ var (
 	InjectSpeed          = 1200  // the transaction inject speed
 	TotalDataSize        = 24000 // the total number of txs
 	BatchSize            = 2400  // supervisor read a batch of txs then send them, it should be larger than inject speed
-	BrokerNum            = 10
+	BrokerNum            = 4
 	NodesInShard         = 4
 	ShardNum             = 4
 	DataWrite_path       = "./result/"          // measurement data result output path
